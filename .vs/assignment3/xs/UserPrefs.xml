@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{A9EB10B8-9A22-EE7A-A806-FE7B4F2418B8}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/CarAI.cs">
+    <Files>
+      <File FileName="Assets/Scrips/CarAI.cs" Line="5" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="assignment3" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scrips" expanded="True">
+                <Node name="CarAI.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="74e5c130-623b-4245-9b8d-83084d5410ce" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
