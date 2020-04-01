@@ -91,5 +91,82 @@ namespace UnityStandardAssets.Vehicles.Car
             //m_Car.Move(1f, 1f, 1f, 0f);
 
         }
+
+        public float ObjFunction(Vector2 u, Vector2 uHat)
+        {
+            float J;
+            J = Mathf.Pow(Vector2.SqrMagnitude(u - uHat), 2); 
+            return J;
+        }
+
+        public Vector2 Gradient(Vector2 uBar, Vector2 uHat)
+        {
+            Vector2 grad = Vector2.zero;
+            grad.x = 2 * (uBar.x - uHat.x);
+            grad.y = 2 * (uBar.y - uHat.y);
+            return grad;
+        }
+
+        public bool CheckConstraints(Vector2[] A, Vector2 u, float[] b, float Umax)
+        {
+            bool ConstraintRespected = true;
+            for (int i = 0; i < A.Length; i++)
+            {
+                if ((A[i].x * u.x + A[i].y * u.y) > b[i] || u.magnitude > Umax)
+                {
+                    ConstraintRespected = false;
+                    break;
+                }
+            }
+            return ConstraintRespected;
+        }
+
+        public Vector2 SteepDesc(Vector2 u0, Vector2 uHat, Vector2[] A, float[] b, float Umax)
+        {
+            float alfa = 0.1f; //Step
+            Vector2 direction; //direction
+
+            Vector2 uOld = u0;
+            while (CheckConstraints(A, u0, b, Umax))
+            {
+                uOld = u0;
+                direction = -Gradient(u0, uHat);
+                u0 += alfa * direction;
+            }
+            
+            return uOld;
+        }
+        public Vector2 RandSearc(Vector2 uHat, Vector2[] A, float[] b, float Umax)
+        {
+            float step = 0f;
+            int count = 0;
+            Vector2 uRand = uHat;
+            while (!CheckConstraints(A, uRand, b, Umax))
+            {
+                if (count == 5)
+                {
+                    count = 0;
+                    step += 0.1f;
+                }
+                if (count == 0)
+                {
+                    uRand.x = uHat.x + step;
+                }
+                if (count == 1)
+                {
+                    uRand.y = uHat.y + step;
+                }
+                if (count == 3)
+                {
+                    uRand.x = uHat.x - step;
+                }
+                if (count == 4)
+                {
+                    uRand.y = uHat.y - step;
+                }
+                count++;
+            }
+            return uRand;
+        }
     }
 }
