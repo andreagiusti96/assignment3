@@ -19,6 +19,12 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public GameObject my_goal_object;
 
+        //Constraints
+        Vector2[] A;
+        float[] b;
+        float[] h;
+        float Ds = 1;
+
         private void Start()
         {
             // get the car controller
@@ -54,7 +60,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 //Debug.DrawLine(old_wp, wp, Color.red, 100f);
                 old_wp = wp;
             }
-
+            ComputeConstraints();
             
         }
 
@@ -63,7 +69,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             // Execute your path here
             // ...
-
+ 
             // this is how you access information about the terrain
             int i = terrain_manager.myInfo.get_i_index(transform.position.x);
             int j = terrain_manager.myInfo.get_j_index(transform.position.z);
@@ -92,13 +98,14 @@ namespace UnityStandardAssets.Vehicles.Car
 
         }
 
+        
+
         public float ObjFunction(Vector2 u, Vector2 uHat)
         {
             float J;
             J = Mathf.Pow(Vector2.SqrMagnitude(u - uHat), 2); 
             return J;
         }
-
         public Vector2 Gradient(Vector2 uBar, Vector2 uHat)
         {
             Vector2 grad = Vector2.zero;
@@ -107,6 +114,64 @@ namespace UnityStandardAssets.Vehicles.Car
             return grad;
         }
 
+        public void ComputeConstraints()
+        {
+            // A computation
+            A = new Vector2[friends.Length - 1];
+            Vector2 currPos = new Vector2(m_Car.transform.position.x, m_Car.transform.position.z);
+            float angle = Vector2.SignedAngle(currPos, m_Car.transform.forward);//to check
+            Vector2 currSpeed = new Vector2(m_Car.CurrentSpeed * Mathf.Cos(angle), m_Car.CurrentSpeed * Mathf.Sin(angle));
+            Vector3 speed;
+            speed.x = currSpeed.x;
+            speed.y = 0;
+            speed.z = currSpeed.y;
+            //Debug.DrawLine(m_Car.transform.position, m_Car.transform.position + speed, Color.black);
+            int i = 0, j = 0;
+            while (i < friends.Length)
+            {
+                if (currPos.x != friends[i].transform.position.x && currPos.y != friends[i].transform.position.z)
+                {
+                    A[j].x = -(currPos.x - friends[i].transform.position.x);
+                    A[j].y = -(currPos.y - friends[i].transform.position.z);
+                    Debug.Log("A_ij:" + A[j].x + ", " + A[j].y);
+                    i++;
+                    j++;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            //h and b computation
+            h = new float[friends.Length - 1];
+            b = new float[friends.Length - 1];
+            Vector2 DeltaP;
+            Vector2 DeltaV;
+            float Umaxi = 1;
+            float gamma = 1;
+            i = 0;
+            j = 0;
+            while (i < friends.Length)
+            {
+                if (currPos.x != friends[i].transform.position.x && currPos.y != friends[i].transform.position.z)
+                {
+                    DeltaP = new Vector2(currPos.x - friends[i].transform.position.x, currPos.y - friends[i].transform.position.z);
+                    angle = Vector2.SignedAngle(friends[i].transform.position, friends[i].transform.forward);
+                    DeltaV = new Vector2(currSpeed.x - (friends[i].GetComponent<CarController>().CurrentSpeed * Mathf.Cos(angle)), currSpeed.y - (friends[i].GetComponent<CarController>().CurrentSpeed * Mathf.Sin(angle)));
+                    float x = -(DeltaP.x * DeltaV.x + DeltaP.y * DeltaV.y) * (DeltaP.x * currSpeed.x + DeltaP.y * currSpeed.y) / Mathf.Pow(DeltaP.magnitude, 2);
+                    float y = (DeltaV.x * currSpeed.x + DeltaV.y * currSpeed.y);
+                    h[j] = Mathf.Sqrt(4 * (Umaxi) * (DeltaP.magnitude - Ds)) - x;
+                    float z = (1 / 2) * ((gamma * Mathf.Pow(h[i], 3) * DeltaP.magnitude) + (Mathf.Sqrt(2) * (DeltaP.x * DeltaV.x + DeltaP.y * DeltaV.y) / (Mathf.Sqrt(2 * (DeltaP.magnitude - Ds)))));
+                    b[j] = x + y + z;
+                    i++;
+                    j++;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
         public bool CheckConstraints(Vector2[] A, Vector2 u, float[] b, float Umax)
         {
             bool ConstraintRespected = true;

@@ -7,7 +7,7 @@ public class DroneAI : MonoBehaviour
 {
 
     private DroneController m_Drone; // the car controller we want to use
-
+    
     public GameObject terrain_manager_game_object;
     TerrainManager terrain_manager;
 
@@ -16,8 +16,6 @@ public class DroneAI : MonoBehaviour
         // get the drone controller
         m_Drone = GetComponent<DroneController>();
         terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
-
-
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
