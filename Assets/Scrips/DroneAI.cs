@@ -7,7 +7,8 @@ public class DroneAI : MonoBehaviour
 {
 
     private DroneController m_Drone; // the car controller we want to use
-    
+
+    public GameObject my_goal_object;
     public GameObject terrain_manager_game_object;
     TerrainManager terrain_manager;
 
@@ -16,6 +17,8 @@ public class DroneAI : MonoBehaviour
         // get the drone controller
         m_Drone = GetComponent<DroneController>();
         terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
+
+
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
@@ -38,7 +41,7 @@ public class DroneAI : MonoBehaviour
         Vector3 old_wp = start_pos;
         foreach (var wp in my_path)
         {
-            Debug.DrawLine(old_wp, wp, Color.red, 100f);
+            //Debug.DrawLine(old_wp, wp, Color.red, 100f);
             old_wp = wp;
         }
 
@@ -57,10 +60,14 @@ public class DroneAI : MonoBehaviour
         float grid_center_x = terrain_manager.myInfo.get_x_pos(i);
         float grid_center_z = terrain_manager.myInfo.get_z_pos(j);
 
-        Debug.DrawLine(transform.position, new Vector3(grid_center_x, 0f, grid_center_z), Color.white, 1f);
+        //Debug.DrawLine(transform.position, new Vector3(grid_center_x, 0f, grid_center_z), Color.white, 1f);
 
-        // this is how you control the car
-        m_Drone.Move(0.1f, 0.1f);
+        
+        Vector3 relVect = my_goal_object.transform.position - transform.position;
+
+        m_Drone.Move_vect(relVect);
+
+        
 
     }
 

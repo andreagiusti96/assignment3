@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < no_of_cars; i++)
         {
             GameObject new_car;
-            UnityStandardAssets.Vehicles.Car.CarAI new_AI;
+            
+            // new_drone_AI;
 
             new_car = Instantiate(race_car, new Vector3(20.0f + i * 8.0f, 10.0f, 20f), Quaternion.identity);
             Vector3 nominal_pos = CircularConfiguration(i+ (int) Mathf.Floor(no_of_cars/2), no_of_cars, 0.75f);
@@ -63,9 +64,25 @@ public class GameManager : MonoBehaviour {
             goal_sphere.GetComponent<Renderer>().material.SetColor("_Color", my_color);
 
             // Assign goal point
-            new_AI = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>();
-            new_AI.my_goal_object = goal_sphere;
-            new_AI.terrain_manager_game_object = terrain_manager_game_object;
+            if(new_car.tag == "Car")
+            {
+                UnityStandardAssets.Vehicles.Car.CarAI new_AI;
+                new_AI = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>();
+                new_AI.my_goal_object = goal_sphere;
+                new_AI.terrain_manager_game_object = terrain_manager_game_object;
+            }
+            if (new_car.tag == "Drone")
+            {
+                Debug.Log("stuff");
+                DroneAI new_AI;
+                new_AI = new_car.GetComponent<DroneAI>();
+                new_AI.my_goal_object = goal_sphere;
+                new_AI.terrain_manager_game_object = terrain_manager_game_object;
+            }
+
+
+
+
 
             //new_AI.my_goal = goal_sphere.transform.position;
             //var cubeRenderer = new_sphere.GetComponent<Renderer>();
@@ -85,11 +102,23 @@ public class GameManager : MonoBehaviour {
             foreach(GameObject one_car in my_cars)
             {
                 Vector3 car_pos = one_car.transform.position;
-                Vector3 goal_pos = one_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>().my_goal_object.transform.position;
-                if((car_pos-goal_pos).sqrMagnitude > goal_tolerance * goal_tolerance)
+                Vector3 goal_pos = Vector3.zero;
+                if(one_car.tag == "Car")
                 {
-                    Debug.Log("distSqr" + (car_pos - goal_pos).sqrMagnitude);
-                    Debug.DrawLine(car_pos, goal_pos, Color.magenta);
+                    goal_pos = one_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>().my_goal_object.transform.position;
+
+                }
+                if (one_car.tag == "Drone")
+                {
+                    goal_pos = one_car.GetComponent<DroneAI>().my_goal_object.transform.position;
+
+                }
+
+
+                if ((car_pos-goal_pos).sqrMagnitude > goal_tolerance * goal_tolerance)
+                {
+                    //Debug.Log("distSqr" + (car_pos - goal_pos).sqrMagnitude);
+                    //Debug.DrawLine(car_pos, goal_pos, Color.magenta);
                     all_cars_done = false;
                     break;
                 }

@@ -8,25 +8,45 @@ public class DroneController : MonoBehaviour
 {
 
     public Vector3 velocity;
-    public Vector3 acceleration;
 
     public float max_speed = 15f;
     public float max_acceleration = 15f;
+    public Vector3 desired_force;
 
     private float v = 0f; //desired acceleration first component
     private float h = 0f; //desired acceleration second component
 
+    private Rigidbody rb;
+
     public void Move(float h_in, float v_in)
     { 
-        h = h_in;
-        v = v_in;
+        h = h_in * 1000f * max_acceleration;
+        v = v_in * 1000f * max_acceleration;
+        desired_force = new Vector3(h, 0f, v);
+        if(desired_force.magnitude > 1000f * max_acceleration)
+        {
+            desired_force = desired_force.normalized * 1000f * max_acceleration;
+        }
+    }
+
+    public void Move_vect(Vector3 desired_relative_force)
+    {
+        if(desired_relative_force.magnitude > 1f)
+        {
+            desired_force = desired_relative_force.normalized * 1000f * max_acceleration;
+        }
+        else
+        {
+            desired_force = desired_relative_force * 1000f * max_acceleration;
+        }
+        desired_relative_force.y = 0f; //removing vertical component
+            
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        velocity = Vector3.zero;
-        acceleration = Vector3.zero;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,38 +57,13 @@ public class DroneController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // get input 
-        //float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        //float v = CrossPlatformInputManager.GetAxis("Vertical");
-        // UPDATE: will be set externally using Move(v,h) method
+        velocity = rb.velocity; // for debugging purposes
+        rb.AddForce(desired_force);
 
-        //acceleration = transform.forward * v + transform.right * h * 1f;
-        acceleration = (Vector3.right * h + Vector3.forward * v) * max_acceleration;
-        if (acceleration.magnitude > max_acceleration)
-        {
-            acceleration = acceleration.normalized * max_acceleration;
-        }
-
-        velocity = velocity + acceleration * Time.fixedDeltaTime;
-        if (velocity.magnitude > max_speed)
-        {
-            velocity = velocity.normalized * max_speed;
-        }
-
-        transform.position = transform.position + velocity * Time.fixedDeltaTime;
-
-        var targetRotation = Quaternion.LookRotation(Vector3.up * 9.82f + acceleration, Vector3.forward);
-
-
-        // Smoothly rotate towards the target direction
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10.0f * Time.fixedDeltaTime);
+        //Debug.Log(velocity.magnitude);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        max_acceleration = max_acceleration / 2f;
-        transform.position = transform.position - velocity * Time.fixedDeltaTime * 2f; // move back out of collision
-        velocity = Vector3.zero;
-        Debug.Log("Collision detected!");
-    }
+    
+
+    
 }
