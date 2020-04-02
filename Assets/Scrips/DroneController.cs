@@ -62,8 +62,4 @@ public class DroneController : MonoBehaviour
 
         //Debug.Log(velocity.magnitude);
     }
-
-    
-
-    
 }

@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{A9EB10B8-9A22-EE7A-A806-FE7B4F2418B8}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/DroneAI.cs">
     <Files>
-      <File FileName="Assets/Scrips/CarAI.cs" Line="117" Column="41" />
-      <File FileName="Assets/Scrips/DroneAI.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scrips/DroneAI.cs" Line="50" Column="42" />
+      <File FileName="Assets/Scrips/PathPlanner1.cs" Line="26" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,9 +14,7 @@
               </Node>
               <Node name="Standard Assets" expanded="True">
                 <Node name="Vehicles" expanded="True">
-                  <Node name="Car" expanded="True">
-                    <Node name="Scripts" expanded="True" />
-                  </Node>
+                  <Node name="Car" expanded="True" />
                 </Node>
               </Node>
             </Node>
@@ -26,8 +24,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>Assembly-CSharp-firstpass.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="de94c9ae-614c-4984-9f7c-f163a30602e1" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4971bcec-35ce-44ec-a9e1-b6a6a50edbfb" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

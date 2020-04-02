@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace UnityStandardAssets.Vehicles.Car
-{
+
     public class PathPlanner1 : MonoBehaviour
     {
         // Start is called before the first frame update
@@ -21,7 +20,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void Start()
         {
             terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
-            drones = GameObject.FindGameObjectsWithTag("Player");
+            drones = GameObject.FindGameObjectsWithTag("Drone");
             terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
 
             scale = 2;
@@ -34,13 +33,13 @@ namespace UnityStandardAssets.Vehicles.Car
             foreach (GameObject drone in drones)
             {
                 Vector3 startPos = drone.transform.position;
-                Vector3 goalPos = drone.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>().my_goal_object.transform.position;
+                Vector3 goalPos = drone.GetComponent<DroneAI>().my_goal_object.transform.position;
                 
                 List<Node> path = Astar(startPos, goalPos);
 
-                drone.GetComponent<CarAI>().my_path = path;
+                drone.GetComponent<DroneAI>().my_path = path;
 
-                Color c = drone.GetComponent<UnityStandardAssets.Vehicles.Car.CarAI>().my_goal_object.GetComponent<Renderer>().material.color;
+                Color c = drone.GetComponent<DroneAI>().my_goal_object.GetComponent<Renderer>().material.color;
                 //Debug.DrawLine(startPos, goalPos, Color.black, 100f);
                 drawPath(path, c);
             }
@@ -201,8 +200,8 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             Edge forward = nodes[from].edges.Find(edge => edge.destination == to);
             Edge backward = nodes[to].edges.Find(edge => edge.destination == from);
-            forward.cost *= 0.9f;
-            backward.cost *= 1.5f;
+            forward.cost *= 1f;
+            backward.cost *= 2f;
         }
 
         public void drawPath(List<Node> path, Color color)
@@ -280,4 +279,3 @@ namespace UnityStandardAssets.Vehicles.Car
         }
     }
 
-}

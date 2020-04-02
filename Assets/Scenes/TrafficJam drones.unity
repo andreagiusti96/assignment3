@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1004648171}
   - component: {fileID: 1004648170}
+  - component: {fileID: 1004648172}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -345,7 +346,7 @@ MonoBehaviour:
   completion_time: 0
   goal_tolerance: 20
   finished: 0
-  no_of_cars: 50
+  no_of_cars: 20
   my_cars: []
 --- !u!4 &1004648171
 Transform:
@@ -361,6 +362,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004648172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004648169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec19d6b7de4e41e59910c1e03546b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain_manager_game_object: {fileID: 1358011048}
+  terrain_manager: {fileID: 0}
+  drones: []
+  scale: 0
 --- !u!1 &1358011048
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed951abcb196b40f38b3699dfa82c76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrain_filename: text/terrainAA
+  terrain_filename: text/terrainBB
   myInfo:
     file_name: 
     x_low: 0
