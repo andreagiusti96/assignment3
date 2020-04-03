@@ -29,7 +29,7 @@ using System;
             makeGraph(terrain_manager, mapMatrix);
 
             initID();
-
+            int k = 0;
             foreach (GameObject drone in drones)
             {
                 Vector3 startPos = drone.transform.position;
@@ -38,7 +38,8 @@ using System;
                 List<Node> path = Astar(startPos, goalPos);
 
                 drone.GetComponent<DroneAI>().my_path = path;
-
+                drone.GetComponent<DroneAI>().friends = drones;
+                drone.GetComponent<DroneAI>().DroneID = k++;
                 Color c = drone.GetComponent<DroneAI>().my_goal_object.GetComponent<Renderer>().material.color;
                 //Debug.DrawLine(startPos, goalPos, Color.black, 100f);
                 drawPath(path, c);
@@ -200,7 +201,7 @@ using System;
         {
             Edge forward = nodes[from].edges.Find(edge => edge.destination == to);
             Edge backward = nodes[to].edges.Find(edge => edge.destination == from);
-            forward.cost *= 1f;
+            forward.cost *= 0.8f;
             backward.cost *= 2f;
         }
 

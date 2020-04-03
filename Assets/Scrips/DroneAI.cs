@@ -16,37 +16,59 @@ public class DroneAI : MonoBehaviour
 
     int waypoint = 0;
 
+    public int DroneID;
+
     //Constraints
     Vector2[] A;
-    float[] b;
-    float[] h;
-    float Ds = 10f;
+    double[] b;
+    double[] h;
+    float Ds;
+    double gamma;
+    float Umax;
+    float Vmax;
+    float Kv;
+    float Ka;
 
     private void Start()
     {
         // get the drone controller
         m_Drone = GetComponent<DroneController>();
         terrain_manager = terrain_manager_game_object.GetComponent<TerrainManager>();
-        friends = GameObject.FindGameObjectsWithTag("Drone");
+        //friends = GameObject.FindGameObjectsWithTag("Drone");
 
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
-  
+
+        Ds= 10 - 4f * (float)DroneID / (float)(friends.Length - 1);
+        gamma = 1f + (float)DroneID * 100f;
+        Vmax = 5f + 10f * (float)DroneID / (float)(friends.Length-1);
+        Kv = 1f + (float)DroneID / (float)(friends.Length - 1);
+        Ka = 1f;
     }
 
 
     private void FixedUpdate()
     {
         ComputeConstraints();
-        float Umax = m_Drone.max_acceleration;
+        Umax = m_Drone.max_acceleration;
         Vector3 acc;
-        float Kv = 1;
-        float Ka = 1;
-        float treshold = 5;
+ 
+        float treshold = 10;
+
         Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
+        if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
+
         acc = Ka * (DesiredSpeed - m_Drone.velocity);
-        acc = two2three(RandSearc(three2two(acc), A, b, Umax));
-        m_Drone.Move_vect(acc);
+        if (acc.magnitude > Umax)
+        {
+            acc = acc.normalized * Umax;
+        }
+
+
+        acc = two2three(RandSearc(three2two(acc)));
+
+        m_Drone.Move_vect(acc/Umax);
+
         if (waypoint < (my_path.Count - 1) && Vector3.Distance(my_path[waypoint].point, m_Drone.transform.position) < treshold)
         {
             waypoint++;
@@ -67,175 +89,141 @@ public class DroneAI : MonoBehaviour
         return vecNew;
     }
 
-    public float ObjFunction(Vector2 u, Vector2 uHat)
-    {
-        float J;
-        J = Mathf.Pow(Vector2.SqrMagnitude(u - uHat), 2);
-        return J;
-    }
-    public Vector2 Gradient(Vector2 uBar, Vector2 uHat)
-    {
-        Vector2 grad = Vector2.zero;
-        grad.x = 2 * (uBar.x - uHat.x);
-        grad.y = 2 * (uBar.y - uHat.y);
-        return grad;
-    }
-
     public void ComputeConstraints()
     {
-        // A computation
-        A = new Vector2[friends.Length - 1];
-        Vector2 currPos = new Vector2(m_Drone.transform.position.x, m_Drone.transform.position.z);
-        Vector2 currSpeed = new Vector2(m_Drone.velocity.x, m_Drone.velocity.z);
-        int i = 0, j = 0;
-        while (i < friends.Length)
-        {
-            if (currPos.x != friends[i].transform.position.x && currPos.y != friends[i].transform.position.z)
-            {
-                A[j].x = -(currPos.x - friends[i].transform.position.x);
-                A[j].y = -(currPos.y - friends[i].transform.position.z);
-                //Debug.Log("A_ij:" + A[j].x + ", " + A[j].y);
-                i++;
-                j++;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        //h and b computation
-        h = new float[friends.Length - 1];
-        b = new float[friends.Length - 1];
-        Vector2 DeltaP;
-        Vector2 DeltaV;
-        float Umax = m_Drone.max_acceleration;
-        System.Random rand = new System.Random();
-        float gamma = 1 + rand.Next(5);
-        i = 0;
-        j = 0;
-        while (i < friends.Length)
-        {
-            if (currPos.x != friends[i].transform.position.x && currPos.y != friends[i].transform.position.z)
-            {
-                DeltaP = new Vector2(currPos.x - friends[i].transform.position.x, currPos.y - friends[i].transform.position.z);
-                DeltaV = new Vector2(currSpeed.x - friends[i].GetComponent<DroneController>().velocity.x, currSpeed.y - friends[i].GetComponent<DroneController>().velocity.z);
-                float x = -(DeltaP.x * DeltaV.x + DeltaP.y * DeltaV.y) * (DeltaP.x * currSpeed.x + DeltaP.y * currSpeed.y) / Mathf.Pow(DeltaP.magnitude, 2);
-                float y = (DeltaV.x * currSpeed.x + DeltaV.y * currSpeed.y);
-                h[j] = Mathf.Sqrt(4 * (Umax) * (DeltaP.magnitude - Ds)) + ((DeltaP.x * DeltaV.x + DeltaP.y * DeltaV.y) / DeltaP.magnitude);
-                float z = (1 / 2) * ((gamma * Mathf.Pow(h[j], 3) * DeltaP.magnitude) + (Mathf.Sqrt(2*Umax) * (DeltaP.x * DeltaV.x + DeltaP.y * DeltaV.y) / (Mathf.Sqrt(2 * (DeltaP.magnitude - Ds)))));
-                if (DeltaP.magnitude < 20)
-                {
-                    b[j] = x + y + z;
-                }
-                else
-                {
-                    b[j] = 10000000; 
-                }
-         
-                if(h[j]<0) Debug.Log("h negativo");
+        A = new Vector2[friends.Length];
+        b = new double[friends.Length];
+        h = new double[friends.Length];
 
-                i++;
-                j++;
-            }
-            else
-            {
-                i++;
-            }
+
+
+        for (int j=0; j<A.Length; j++)
+        {
+            Vector2 deltaP = three2two(m_Drone.transform.position - friends[j].transform.position);
+            Vector2 deltaV = three2two(m_Drone.velocity - friends[j].GetComponent<DroneController>().velocity);
+
+            h[j] = Mathf.Sqrt(2 * Umax * (deltaP.magnitude-Ds))+ Vector2.Dot(deltaP,deltaV) / deltaP.magnitude;
+
+
+            A[j] = -deltaP;
+
+            b[j] = -Vector2.Dot(deltaP, deltaV) * Vector2.Dot(deltaP, three2two(m_Drone.velocity)) / Mathf.Pow(deltaP.magnitude, 2);
+            b[j] += Vector2.Dot(deltaV, three2two(m_Drone.velocity));
+            b[j] += 0.5 * (gamma * Mathf.Pow((float)h[j], 3) * deltaP.magnitude + Mathf.Sqrt(2 * Umax) * Vector2.Dot(deltaP, deltaV) / Mathf.Sqrt(2 * (deltaP.magnitude - Ds)));
         }
     }
-    public bool CheckConstraints(Vector2[] A, Vector2 u, float[] b, float Umax)
+
+
+    public bool CheckConstraints(Vector2 u)
     {
         bool ConstraintRespected = true;
-        for (int i = 0; i < A.Length; i++)
+
+        ConstraintRespected = u.magnitude <= Umax;
+
+        int j = 0;
+        while(ConstraintRespected && j < friends.Length)
         {
-            if ((A[i].x * u.x + A[i].y * u.y) > b[i] || u.magnitude > Umax)
+            if(j != DroneID)
             {
-                ConstraintRespected = false;
-                //Debug.Log("Vincoli non rispettati");
-                break;
+                ConstraintRespected = Vector2.Dot(A[j], u) <= b[j];
             }
+
+            if (!ConstraintRespected) Debug.DrawLine(m_Drone.transform.position, friends[j].transform.position, Color.magenta);
+
+            j++;
         }
+
         return ConstraintRespected;
     }
 
-    public Vector2 SteepDesc(Vector2 u0, Vector2 uHat, Vector2[] A, float[] b, float Umax)
-    {
-        float alfa = 0.1f; //Step
-        Vector2 direction; //direction
 
-        Vector2 uOld = u0;
-        while (CheckConstraints(A, u0, b, Umax))
-        {
-            uOld = u0;
-            direction = -Gradient(u0, uHat);
-            u0 += alfa * direction;
-        }
 
-        return uOld;
-    }
-    public Vector2 RandSearc(Vector2 uHat, Vector2[] A, float[] b, float Umax)
+    public Vector2 RandSearc(Vector2 uHat)
     {
         float step = 0f;
         int count = 0;
         Vector2 uRand = uHat;
-        while (!CheckConstraints(A, uRand, b, Umax) && step < 15)
+
+        while (!CheckConstraints(uRand) && step < 30)
         {
-            uRand = uHat;
-            if (count == 7)
+
+            switch (count)
             {
-                count = 0;
-                step += 1f;
+                case 0:
+                    uRand = uHat + new Vector2(0, step);
+                    break;
+                case 1:
+                    uRand = uHat + new Vector2(step, step);
+                    break;
+                case 2:
+                    uRand = uHat + new Vector2(step, 0);
+                    break;
+                case 3:
+                    uRand = uHat + new Vector2(step, -step);
+                    break;
+                case 4:
+                    uRand = uHat + new Vector2(0, -step);
+                    break;
+                case 5:
+                    uRand = uHat + new Vector2(-step, -step);
+                    break;
+                case 6:
+                    uRand = uHat + new Vector2(-step, 0);
+                    break;
+                case 7:
+                    uRand = uHat + new Vector2(-step, step);
+                    break;
+                case 8:
+                    uRand = uHat * 0.1f * step;
+                    break;
+                case 9:
+                    uRand = - uHat * 0.1f * step;
+                    step += 1;
+                    break;
             }
-            if (count == 0)
-            {
-                uRand.x = uHat.x + step;
-            }
-            if (count == 1)
-            {
-                uRand.x = uHat.x + step;
-                uRand.y = uHat.y + step;
-            }
-            if (count == 2)
-            {
-                uRand.y = uHat.y + step;
-            }
-            if (count == 3)
-            {
-                uRand.x = uHat.x - step;
-                uRand.y = uHat.y + step;
-            }
-            if (count == 4)
-            {
-                uRand.x = uHat.x - step;
-            }
-            if (count == 5)
-            {
-                uRand.x = uHat.x - step;
-                uRand.y = uHat.y - step;
-            }
-            if (count == 6)
-            {
-                uRand.y = uHat.y - step;
-            }
-            if (count == 7)
-            {
-                uRand.x = uHat.x + step;
-                uRand.y = uHat.y - step;
-            }
-            count++;
+
+            count = (count + 1) % 10;
         }
+
+
         if (step == 0)
         {
             Debug.Log("uscito e basta");
         }
-        else if (step >= 15)
+        else if (step >= 30)
         {
             Debug.Log("uscito con antiimpallo");
+            uRand = three2two(AccRecovery());
         }
         else
         {
-            Debug.Log("uscito senza antiimpallo");
+            Debug.Log("uscito con step="+step);
         }
-        return uRand;
+
+        return uRand;//4*uRand;
+    }
+
+    public Vector3 closestFriend()
+    {
+        Vector3 goal = Vector3.zero;
+        float dist = float.PositiveInfinity;
+        float actualDist;
+
+        for (int i = 0;i< friends.Length; i++)
+        {
+            actualDist = Vector3.Distance(m_Drone.transform.position, friends[i].transform.position);
+            if (actualDist != 0 && dist > actualDist)
+            {
+                dist = actualDist;
+                goal = friends[i].transform.position;
+            }
+        }
+        return goal;
+    }
+    public Vector3 AccRecovery()
+    {
+        Vector3 acc = - 1f * (closestFriend() - m_Drone.transform.position);
+        acc = Quaternion.EulerAngles(0, 3.14f/9.0f, 0) * acc; 
+        return acc;
     }
 }

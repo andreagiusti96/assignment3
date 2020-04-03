@@ -159,6 +159,7 @@ MonoBehaviour:
   friends: []
   my_goal_object: {fileID: 0}
   terrain_manager_game_object: {fileID: 0}
+  DroneID: 0
 --- !u!114 &1478294031488993884
 MonoBehaviour:
   m_ObjectHideFlags: 0
