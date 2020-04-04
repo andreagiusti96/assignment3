@@ -46,10 +46,10 @@ public class DroneAI : MonoBehaviour
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
-        Ds= 8 - 2f * (float)DroneID / (float)(friends.Length - 1);
-        gamma = 1f + (float)DroneID * 100f;
-        Vmax = 8f + 7f * (float)DroneID / (float)(friends.Length-1);
-        Kv = 1f + (float)DroneID / (float)(friends.Length - 1);
+        Ds= 4 + 2f * (float)DroneID / (float)(friends.Length - 1);
+        gamma = 6000f - (float)DroneID * 100f;
+        Vmax = 15f - 10f * (float)DroneID / (float)(friends.Length-1);
+        Kv = 2f - (float)DroneID / (float)(friends.Length - 1);
         Ka = 1f;
     }
 
@@ -77,7 +77,7 @@ public class DroneAI : MonoBehaviour
         {
 
             ComputeConstraints();
-            float treshold = 10;
+            float treshold = 7;
 
             Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
             if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
