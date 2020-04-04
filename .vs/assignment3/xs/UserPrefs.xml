@@ -1,35 +1,18 @@
 ﻿<Properties StartupConfiguration="{A9EB10B8-9A22-EE7A-A806-FE7B4F2418B8}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/DroneController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Desktop/Università/KTH/AI&amp;MAS/Module2/DD2438-A2/Assets/Scrips/CarAI1.cs">
     <Files>
-      <File FileName="Assets/Scrips/DroneAI.cs" Line="50" Column="30" />
-      <File FileName="Assets/Scrips/PathPlanner1.cs" Line="203" Column="29" />
-      <File FileName="Assets/Scrips/DroneController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scrips/DroneAI.cs" Line="84" Column="6" />
+      <File FileName="Assets/Scrips/PathPlanner1.cs" />
+      <File FileName="Assets/Scrips/DroneController.cs" />
+      <File FileName="../../Desktop/Università/KTH/AI&amp;MAS/Module2/DD2438-A2/Assets/Scrips/CarAI1.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="assignment3" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scrips" expanded="True">
-                <Node name="DroneController.cs" selected="True" />
-              </Node>
-              <Node name="Standard Assets" expanded="True">
-                <Node name="Vehicles" expanded="True">
-                  <Node name="Car" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Assembly-CSharp-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="86d86ef2-3f7f-4d52-89a8-a0b048c5e731" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="853f8334-1535-4cc5-8a13-47acaa27496e" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

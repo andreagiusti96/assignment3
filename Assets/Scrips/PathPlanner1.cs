@@ -92,7 +92,7 @@ using System;
                         float x = i * x_size + (terrain_manager.myInfo.x_low) + (x_size * 0.5f);
                         float z = j * z_size + (terrain_manager.myInfo.z_low) + (z_size * 0.5f);
 
-                        Vector3 waypoint = new Vector3(x, 0.2f, z);
+                        Vector3 waypoint = new Vector3(x, 1f, z);
 
                         Node node = new Node(nr, waypoint);
                         nodes.Add(node);
@@ -209,7 +209,7 @@ using System;
         {
             for (int i = 1; i < path.Count; i++)
             {
-                Debug.DrawLine(path[i - 1].point, path[i].point, color, 100f);
+                Debug.DrawLine(path[i - 1].point, path[i].point, color, 1000f);
             }
         }
 

@@ -24,10 +24,17 @@ public class DroneAI : MonoBehaviour
     double[] h;
     float Ds;
     double gamma;
+
     float Umax;
     float Vmax;
     float Kv;
     float Ka;
+
+    //stuckRecovery
+    bool stuck = false;
+    Vector3 LastPos;
+    int stuckCounter = 0;
+    int recovery = 0;
 
     private void Start()
     {
@@ -49,31 +56,49 @@ public class DroneAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ComputeConstraints();
         Umax = m_Drone.max_acceleration;
         Vector3 acc;
- 
-        float treshold = 10;
 
-        Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
-        if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
-
-        acc = Ka * (DesiredSpeed - m_Drone.velocity);
-        if (acc.magnitude > Umax)
+        if (Vector3.Distance(LastPos, m_Drone.transform.position) < 0.01f && Vector3.Distance(my_path[my_path.Count - 1].point, m_Drone.transform.position) > 5f && recovery == 0) stuckCounter++;
+        stuck = stuckCounter > 10;
+        if (stuck)
         {
-            acc = acc.normalized * Umax;
+            Debug.Log("Drone" + DroneID + " Stucked");
+            acc = AccRecovery();
+            m_Drone.Move_vect(acc);
+            recovery++;
+            if (recovery > 50)
+            {
+                stuckCounter = 0;
+                recovery = 0;
+            }
         }
-
-
-        acc = two2three(RandSearc(three2two(acc)));
-
-        m_Drone.Move_vect(acc/Umax);
-
-        if (waypoint < (my_path.Count - 1) && Vector3.Distance(my_path[waypoint].point, m_Drone.transform.position) < treshold)
+        else
         {
-            waypoint++;
+
+            ComputeConstraints();
+            float treshold = 10;
+
+            Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
+            if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
+
+            acc = Ka * (DesiredSpeed - m_Drone.velocity);
+            if (acc.magnitude > Umax)
+            {
+                acc = acc.normalized * Umax;
+            }
+
+
+            acc = two2three(RandSearc(three2two(acc)));
+
+            m_Drone.Move_vect(acc / Umax);
+
+            if (waypoint < (my_path.Count - 1) && Vector3.Distance(my_path[waypoint].point, m_Drone.transform.position) < treshold)
+            {
+                waypoint++;
+            }
         }
-        
+        LastPos = m_Drone.transform.position;
 
     }
 
@@ -82,7 +107,6 @@ public class DroneAI : MonoBehaviour
         Vector3 vecNew = new Vector3(vec.x, 0, vec.y);
         return vecNew;
     }
-
     public Vector2 three2two(Vector3 vec)
     {
         Vector2 vecNew = new Vector2(vec.x, vec.z);
@@ -224,6 +248,13 @@ public class DroneAI : MonoBehaviour
     {
         Vector3 acc = - 1f * (closestFriend() - m_Drone.transform.position);
         acc = Quaternion.EulerAngles(0, 3.14f/9.0f, 0) * acc; 
+        return acc;
+    }
+
+    public Vector3 StuckRecovery(Vector3 Pos)
+    {
+        Vector3 acc = -0.5f * (Pos - m_Drone.transform.position);
+        acc = Quaternion.EulerAngles(0, 3.14f / 9.0f, 0) * acc;
         return acc;
     }
 }
