@@ -14,7 +14,7 @@ public class DroneAI : MonoBehaviour
 
     public List<Node> my_path = new List<Node>();
 
-    int waypoint = 0;
+    public int waypoint = 0;
 
     public int DroneID;
 
@@ -46,9 +46,9 @@ public class DroneAI : MonoBehaviour
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
-        Ds= 10 - 4f * (float)DroneID / (float)(friends.Length - 1);
+        Ds= 8 - 2f * (float)DroneID / (float)(friends.Length - 1);
         gamma = 1f + (float)DroneID * 100f;
-        Vmax = 5f + 10f * (float)DroneID / (float)(friends.Length-1);
+        Vmax = 8f + 7f * (float)DroneID / (float)(friends.Length-1);
         Kv = 1f + (float)DroneID / (float)(friends.Length - 1);
         Ka = 1f;
     }
