@@ -215,10 +215,10 @@ public class PathPlanner1 : MonoBehaviour
         Edge forward = nodes[from].edges.Find(edge => edge.destination == to);
         Edge backward = nodes[to].edges.Find(edge => edge.destination == from);
 
-        foreach (Edge outgoing in nodes[from].edges.FindAll(e => e != forward))
-        {
+        //foreach (Edge outgoing in nodes[from].edges.FindAll(e => e != forward))
+        //{
            // outgoing.cost = Mathf.Max(outgoing.originalCost * 1.2f, outgoing.cost);
-        }
+        //}
 
         forward.cost = forward.cost * 0.7f;
         backward.cost = backward.cost * 2f;

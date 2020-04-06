@@ -46,9 +46,9 @@ public class DroneAI : MonoBehaviour
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
-        Ds= 4 + 2f * (float)DroneID / (float)(friends.Length - 1);
-        gamma = 6000f - (float)DroneID * 100f;
-        Vmax = 15f - 10f * (float)DroneID / (float)(friends.Length-1);
+        Ds= 5 + 2f * (float)DroneID / (float)(friends.Length - 1);
+        gamma = (float)(friends.Length)*100f - (float)DroneID * 100f;
+        Vmax = 15f - 6f * (float)DroneID / (float)(friends.Length-1);
         Kv = 2f - (float)DroneID / (float)(friends.Length - 1);
         Ka = 1f;
     }
