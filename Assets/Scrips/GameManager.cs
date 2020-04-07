@@ -59,9 +59,10 @@ public class GameManager : MonoBehaviour {
 
             nominal_pos = CircularConfiguration(i, no_of_cars, 0.8f);
             goal_sphere.transform.position = GetCollisionFreePosNear(nominal_pos, 50f);
-
+           
             goal_sphere.transform.localScale = Vector3.one * 3f;  
             goal_sphere.GetComponent<Renderer>().material.SetColor("_Color", my_color);
+            goal_sphere.GetComponent<SphereCollider>().radius = 0f;
 
             // Assign goal point
             if(new_car.tag == "Car")
