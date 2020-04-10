@@ -62,15 +62,7 @@ public class DroneAISoccer_blue : MonoBehaviour
         float Umax = m_Drone.max_acceleration;
         float Vmax = m_Drone.max_speed;
         Vector3 acc;
-        if (DroneID == 0 || DroneID == 1)
-        {
-            Vector3 DesiredSpeed = Kv * (GetGoalieSet() - m_Drone.transform.position) + Kvd *((GetGoalieSet() - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
-            acc = Ka * (DesiredSpeed - m_Drone.velocity);
-            m_Drone.Move_vect(acc / Umax);
-            OldErr = (GetGoalieSet() - m_Drone.transform.position);
-        }
-        else
-        {
+
 
             Vector3 avg_pos = Vector3.zero;
 
@@ -98,7 +90,7 @@ public class DroneAISoccer_blue : MonoBehaviour
             // this is how you control the car
             m_Drone.Move_vect(direction);
             //m_Car.Move(0f, -1f, 1f, 0f);
-        }
+        
         Debug.DrawLine(ball.transform.position, ball.transform.position + GetBallSpeed(OldBallPos));
         OldBallPos = ball.transform.position;
     }

@@ -55,118 +55,118 @@ public class GameManagerSoccer : MonoBehaviour
         blue_goal.transform.position = terrain_manager.myInfo.start_pos;
         red_goal.transform.position = terrain_manager.myInfo.goal_pos;
 
-        for (int i = 0; i < no_of_cars; i++)
-        {
-            string team_tag;
-            Color team_color;
-            if (i < no_of_cars / 2f)
-            {
-                team_tag = "Blue";
-                team_color = Color.blue;
-            }
-            else
-            {
-                team_tag = "Red";
-                team_color = Color.red;
-            }
+        //for (int i = 0; i < no_of_cars; i++)
+        //{
+        //    string team_tag;
+        //    Color team_color;
+        //    if (i < no_of_cars / 2f)
+        //    {
+        //        team_tag = "Blue";
+        //        team_color = Color.blue;
+        //    }
+        //    else
+        //    {
+        //        team_tag = "Red";
+        //        team_color = Color.red;
+        //    }
 
-            GameObject new_car;
+        //    GameObject new_car;
             
 
 
-            //new_car = Instantiate(race_car, new Vector3(20.0f + i * 8.0f, 10.0f, 20f), Quaternion.identity);
-            new_car = Instantiate(race_car, Vector3.zero, Quaternion.identity);
-            new_car.tag = team_tag;
+        //    //new_car = Instantiate(race_car, new Vector3(20.0f + i * 8.0f, 10.0f, 20f), Quaternion.identity);
+        //    new_car = Instantiate(race_car, Vector3.zero, Quaternion.identity);
+        //    new_car.tag = team_tag;
 
-            Vector3 nominal_pos = CircularConfiguration(i + (int)Mathf.Floor(no_of_cars / 2), no_of_cars, 0.2f);
-            new_car.transform.position = GetCollisionFreePosNear(nominal_pos, 10f);
-            my_cars.Add(new_car);
+        //    Vector3 nominal_pos = CircularConfiguration(i + (int)Mathf.Floor(no_of_cars / 2), no_of_cars, 0.2f);
+        //    new_car.transform.position = GetCollisionFreePosNear(nominal_pos, 10f);
+        //    my_cars.Add(new_car);
 
-            GameObject car_sphere = new_car.transform.Find("Sphere").gameObject;
-            //Color my_color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-            car_sphere.GetComponent<Renderer>().material.SetColor("_Color", team_color);
+        //    GameObject car_sphere = new_car.transform.Find("Sphere").gameObject;
+        //    //Color my_color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        //    car_sphere.GetComponent<Renderer>().material.SetColor("_Color", team_color);
 
             
 
-            //if (new_car.tag == "Car")
-            if (new_car.name.Contains("Car"))
-            {
-                UnityStandardAssets.Vehicles.Car.CarAISoccer_gr1 new_AI_gr1;
-                UnityStandardAssets.Vehicles.Car.CarAISoccer_gr2 new_AI_gr2;
+        //    //if (new_car.tag == "Car")
+        //    if (new_car.name.Contains("Car"))
+        //    {
+        //        UnityStandardAssets.Vehicles.Car.CarAISoccer_gr1 new_AI_gr1;
+        //        UnityStandardAssets.Vehicles.Car.CarAISoccer_gr2 new_AI_gr2;
 
-                new_AI_gr1 = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAISoccer_gr1>();
-                new_AI_gr2 = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAISoccer_gr2>();
+        //        new_AI_gr1 = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAISoccer_gr1>();
+        //        new_AI_gr2 = new_car.GetComponent<UnityStandardAssets.Vehicles.Car.CarAISoccer_gr2>();
 
-                if (team_tag == "Blue")
-                {
-                    //new_AI.my_goal_object = red_goal;
-                    new_AI_gr1.own_goal = blue_goal;
-                    new_AI_gr1.other_goal = red_goal;
-                    new_AI_gr2.own_goal = blue_goal;
-                    new_AI_gr2.other_goal = red_goal;
-                    new_AI_gr1.enabled = true;
-                    new_AI_gr2.enabled = false;
-                }
-                else
-                {
-                    //new_AI.my_goal_object = blue_goal;
-                    new_AI_gr1.own_goal = red_goal;
-                    new_AI_gr1.other_goal = blue_goal;
-                    new_AI_gr2.own_goal = red_goal;
-                    new_AI_gr2.other_goal = blue_goal;
-                    new_AI_gr1.enabled = false;
-                    new_AI_gr2.enabled = true;
-                }
+        //        if (team_tag == "Blue")
+        //        {
+        //            //new_AI.my_goal_object = red_goal;
+        //            new_AI_gr1.own_goal = blue_goal;
+        //            new_AI_gr1.other_goal = red_goal;
+        //            new_AI_gr2.own_goal = blue_goal;
+        //            new_AI_gr2.other_goal = red_goal;
+        //            new_AI_gr1.enabled = true;
+        //            new_AI_gr2.enabled = false;
+        //        }
+        //        else
+        //        {
+        //            //new_AI.my_goal_object = blue_goal;
+        //            new_AI_gr1.own_goal = red_goal;
+        //            new_AI_gr1.other_goal = blue_goal;
+        //            new_AI_gr2.own_goal = red_goal;
+        //            new_AI_gr2.other_goal = blue_goal;
+        //            new_AI_gr1.enabled = false;
+        //            new_AI_gr2.enabled = true;
+        //        }
 
-                new_AI_gr1.terrain_manager_game_object = terrain_manager_game_object;
-                new_AI_gr2.terrain_manager_game_object = terrain_manager_game_object;
-
-
-            }
-            //if (new_car.tag == "Drone")
-            if (new_car.name.Contains("Drone"))
-            {
-                DroneAISoccer_blue new_AI_gr1;
-                DroneAISoccer_red new_AI_gr2;
-
-                new_AI_gr1 = new_car.GetComponent<DroneAISoccer_blue>();
-                new_AI_gr2 = new_car.GetComponent<DroneAISoccer_red>();
-
-                if (team_tag == "Blue")
-                {
-                    //new_AI.my_goal_object = red_goal;
-                    new_AI_gr1.own_goal = blue_goal;
-                    new_AI_gr1.other_goal = red_goal;
-                    new_AI_gr2.own_goal = blue_goal;
-                    new_AI_gr2.other_goal = red_goal;
-                    new_AI_gr1.enabled = true;
-                    new_AI_gr2.enabled = false;
-                }
-                else
-                {
-                    //new_AI.my_goal_object = blue_goal;
-                    new_AI_gr1.own_goal = red_goal;
-                    new_AI_gr1.other_goal = blue_goal;
-                    new_AI_gr2.own_goal = red_goal;
-                    new_AI_gr2.other_goal = blue_goal;
-                    new_AI_gr1.enabled = false;
-                    new_AI_gr2.enabled = true;
-                }
-
-                new_AI_gr1.terrain_manager_game_object = terrain_manager_game_object;
-                new_AI_gr2.terrain_manager_game_object = terrain_manager_game_object;
-
-            }
+        //        new_AI_gr1.terrain_manager_game_object = terrain_manager_game_object;
+        //        new_AI_gr2.terrain_manager_game_object = terrain_manager_game_object;
 
 
-            //new_AI.my_goal = goal_sphere.transform.position;
-            //var cubeRenderer = new_sphere.GetComponent<Renderer>();
-            //var cubeRenderer = new_car.GetComponent<Sphere>();
+        //    }
+        //    //if (new_car.tag == "Drone")
+        //    if (new_car.name.Contains("Drone"))
+        //    {
+        //        DroneAISoccer_blue new_AI_gr1;
+        //        DroneAISoccer_red new_AI_gr2;
+
+        //        new_AI_gr1 = new_car.GetComponent<DroneAISoccer_blue>();
+        //        new_AI_gr2 = new_car.GetComponent<DroneAISoccer_red>();
+
+        //        if (team_tag == "Blue")
+        //        {
+        //            //new_AI.my_goal_object = red_goal;
+        //            new_AI_gr1.own_goal = blue_goal;
+        //            new_AI_gr1.other_goal = red_goal;
+        //            new_AI_gr2.own_goal = blue_goal;
+        //            new_AI_gr2.other_goal = red_goal;
+        //            new_AI_gr1.enabled = true;
+        //            new_AI_gr2.enabled = false;
+        //        }
+        //        else
+        //        {
+        //            //new_AI.my_goal_object = blue_goal;
+        //            new_AI_gr1.own_goal = red_goal;
+        //            new_AI_gr1.other_goal = blue_goal;
+        //            new_AI_gr2.own_goal = red_goal;
+        //            new_AI_gr2.other_goal = blue_goal;
+        //            new_AI_gr1.enabled = false;
+        //            new_AI_gr2.enabled = true;
+        //        }
+
+        //        new_AI_gr1.terrain_manager_game_object = terrain_manager_game_object;
+        //        new_AI_gr2.terrain_manager_game_object = terrain_manager_game_object;
+
+        //    }
 
 
-            //Call SetColor using the shader property name "_Color" and setting the color to red
-            //cubeRenderer.material.SetColor("_Color", Color.cyan);
-        }
+        //    //new_AI.my_goal = goal_sphere.transform.position;
+        //    //var cubeRenderer = new_sphere.GetComponent<Renderer>();
+        //    //var cubeRenderer = new_car.GetComponent<Sphere>();
+
+
+        //    //Call SetColor using the shader property name "_Color" and setting the color to red
+        //    //cubeRenderer.material.SetColor("_Color", Color.cyan);
+        //}
     }
 
     // Update is called once per frame

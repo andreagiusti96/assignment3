@@ -6,7 +6,7 @@ using System;
 
 
 [RequireComponent(typeof(DroneController))]
-public class GoalieAI : MonoBehaviour
+public class goalieAI : MonoBehaviour
 {
     private DroneController m_Drone; // the drone controller we want to use
 
