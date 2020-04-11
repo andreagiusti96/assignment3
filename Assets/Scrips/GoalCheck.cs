@@ -29,8 +29,8 @@ public class GoalCheck : MonoBehaviour
             transform.position = ball_spawn_point.transform.position;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             red_score = red_score + 1;
-
         }
+
         if (collision.gameObject.name == "Red_goal")
         {
             Debug.Log("Blue scored!");

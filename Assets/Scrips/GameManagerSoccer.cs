@@ -184,8 +184,6 @@ public class GameManagerSoccer : MonoBehaviour
             }
             
         }
-        
-
     }
 
     Vector3 CircularConfiguration(int i, int max_i, float factor_k)

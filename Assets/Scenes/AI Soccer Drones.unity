@@ -469,6 +469,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneSoccerCapsule (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_Enabled
@@ -722,7 +727,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147
+      value: 146.5
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -732,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100.8
+      value: 86.7
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -778,6 +783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DroneSoccerCapsule (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1064,6 +1074,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneSoccerCapsule (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_Enabled
@@ -1180,6 +1195,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1464616488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1646828652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1464616489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464616488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 10
+  TakeActionsBetweenDecisions: 1
+  offsetStep: 0
+--- !u!114 &1464616490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464616488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 10
+    numStackedVectorObservations: 1
+    vectorActionSize: 02000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: DroneSoccerBrain
+  TeamId: 0
+  m_UseChildSensors: 1
 --- !u!1001 &1646828652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1195,7 +1255,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 118.6
+      value: 112.4
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1205,7 +1265,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 116.6
+      value: 130.7
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1282,6 +1342,11 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 248749929}
+    - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: maxStep
+      value: 2000
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: daca3a4f5a4e04af4be6c10f4b4f78f1, type: 3}
@@ -1432,6 +1497,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneSoccerCapsule
       objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_Enabled
@@ -1483,7 +1553,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147
+      value: 149.1
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1493,7 +1563,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100.8
+      value: 115.9
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1539,6 +1609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DroneSoccerCapsule (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}

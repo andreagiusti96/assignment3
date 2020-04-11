@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{A9EB10B8-9A22-EE7A-A806-FE7B4F2418B8}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/DroneAISoccer_blue.cs">
     <Files>
-      <File FileName="Assets/Scrips/goalieAI.cs" Line="23" Column="28" />
-      <File FileName="Assets/Scrips/GameManagerSoccer.cs" Line="159" Column="16" />
-      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="93" Column="9" />
+      <File FileName="Assets/Scrips/GameManagerSoccer.cs" Line="180" Column="1" />
+      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="52" Column="71" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,7 +23,7 @@
     <String>Assembly-CSharp-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c6bf19e2-6ac7-45fa-834f-84c5e8e551d5" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="da9e0fca-db83-4b39-b949-8973d4e4f59e" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
