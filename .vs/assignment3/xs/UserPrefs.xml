@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/DroneAISoccer_blue.cs">
     <Files>
       <File FileName="Assets/Scrips/GameManagerSoccer.cs" Line="180" Column="1" />
-      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="52" Column="71" />
+      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="105" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +23,7 @@
     <String>Assembly-CSharp-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="da9e0fca-db83-4b39-b949-8973d4e4f59e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ce0c3e98-d6e3-4f04-b499-01f8c6404195" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

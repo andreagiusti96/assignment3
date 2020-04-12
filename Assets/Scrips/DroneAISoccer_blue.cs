@@ -12,11 +12,6 @@ public class DroneAISoccer_blue : Agent
 {
     private DroneController m_Drone; // the drone controller we want to use
 
-    public GameObject[] friends;
-    public string friend_tag;
-    public GameObject[] enemies;
-    public string enemy_tag;
-
     public GameObject own_goal;
     public GameObject other_goal;
     public GameObject ball;
@@ -25,8 +20,14 @@ public class DroneAISoccer_blue : Agent
 
     int bScore=0;
     int rScore = 0;
+    public int side = 1;
 
     public int DroneID;
+
+    float minX = 60f;
+    float maxX = 240f;
+    float minZ = 55f;
+    float maxZ = 145f;
 
     private void Start()
     {
@@ -51,21 +52,36 @@ public class DroneAISoccer_blue : Agent
         ball.GetComponent<Rigidbody>().velocity=Vector3.zero;
         ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
+        // change team
+        GameObject temp = own_goal;
+        own_goal = other_goal;
+        other_goal = temp;
+        side *= -1;
+        //Debug.DrawLine(transform.position, other_goal.transform.position, Color.white, 10f);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // Target and Agent positions x5
-        sensor.AddObservation(transform.position.x);
-        sensor.AddObservation(transform.position.z);
-        sensor.AddObservation(ball.transform.position.x - transform.position.x);
-        sensor.AddObservation(ball.transform.position.z - transform.position.z);
-        sensor.AddObservation(ball.transform.position.y);
+        sensor.AddObservation((transform.position.x - minX) / (maxX - minX));
+        sensor.AddObservation((transform.position.z - minZ) / (maxZ - minZ));
+        sensor.AddObservation((ball.transform.position.x - transform.position.x) / (maxX - minX));
+        sensor.AddObservation((ball.transform.position.z - transform.position.z) / (maxZ - minZ));
+        sensor.AddObservation(ball.transform.position.y / 30f);
 
         // Agent velocity x5
-        sensor.AddObservation(m_Drone.velocity.x);
-        sensor.AddObservation(m_Drone.velocity.z);
-        sensor.AddObservation(ball.GetComponent<Rigidbody>().velocity);
+        sensor.AddObservation(m_Drone.velocity.x / m_Drone.max_speed);
+        sensor.AddObservation(m_Drone.velocity.z / m_Drone.max_speed);
+        sensor.AddObservation(ball.GetComponent<Rigidbody>().velocity/m_Drone.max_speed);
+
+        // team info
+        sensor.AddObservation((other_goal.transform.position.x - minX) / (maxX - minX));
+        sensor.AddObservation((own_goal.transform.position.x - minX) / (maxX - minX));
+
+        //Debug.Log("x=" + (transform.position.x - minX) / (maxX - minX) + " z=" + (transform.position.z - minZ) / (maxZ - minZ) +
+        //    " dx=" + (ball.transform.position.x - transform.position.x) / (maxX - minX) + " dz="+ (ball.transform.position.z - transform.position.z) / (maxZ - minZ) +
+        //    " goal=" + (other_goal.transform.position.x - minX) / (maxX - minX) + " my goal=" + (own_goal.transform.position.x - minX) / (maxX - minX)
+        //    );
     }
 
     public override void OnActionReceived(float[] vectorAction)
@@ -76,24 +92,31 @@ public class DroneAISoccer_blue : Agent
         force.z = vectorAction[1];
         m_Drone.Move_vect(force);
 
-        if (ball.GetComponent<Rigidbody>().velocity.x > 0)
+        //if ( Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
+        //{
+        //    SetReward(1f);
+        //    EndEpisode();
+        //}
+
+        if (side * ball.GetComponent<Rigidbody>().velocity.x > 0)
         {
-            SetReward(0.1f);
+            SetReward(0.01f);
         }
 
         if (ball.GetComponent<GoalCheck>().blue_score > bScore)
         {
             bScore = ball.GetComponent<GoalCheck>().blue_score;
-            SetReward(1f);
+            SetReward(1f * side);
+            //Debug.Log("ricompensa=" + 1f * side);
             EndEpisode();
         }
         else if (ball.GetComponent<GoalCheck>().red_score > rScore)
         {
             rScore = ball.GetComponent<GoalCheck>().red_score;
-            SetReward(-1f);
+            SetReward(-1f * side);
+            //Debug.Log("ricompensa=" + (-1f) * side);
             EndEpisode();
         }
-
     }
 
     public override float[] Heuristic()

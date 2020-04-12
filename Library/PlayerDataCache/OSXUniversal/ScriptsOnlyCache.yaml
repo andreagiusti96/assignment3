@@ -12,6 +12,9 @@ ScriptsOnlyBuild:
     - PlannerBlue
     - TerrainManager
     - goalieAI
+    Barracuda.dll:
+    - Barracuda.NNModel
+    - Barracuda.NNModelData
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -23,7 +26,9 @@ ScriptsOnlyBuild:
     - MLAgents.Policies.BehaviorParameters
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Scenes/AI Soccer Drones.unity:
@@ -86,11 +91,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11248}
     - Class: 114
+      Script: {instanceID: 11290}
+    - Class: 114
       Script: {instanceID: 11294}
     - Class: 114
       Script: {instanceID: 11330}
     - Class: 114
       Script: {instanceID: 11354}
+    - Class: 114
+      Script: {instanceID: 11490}
     - Class: 114
       Script: {instanceID: 11950}
     - Class: 114
@@ -914,7 +923,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: 61f0972608ae6611c64c86a49ae8ebf7
+      Hash: b5ba7ab31ad8f38e544b13bd40a51fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DroneAISoccer_blue
@@ -1047,4 +1056,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/AI Soccer Drones.unity
-  playerPath: /Users/andrea/Documents/GitHub/assignment3/Builds/TrainingEnv1_build1.app
+  playerPath: /Users/andrea/Documents/GitHub/assignment3/Builds/TrainingEnv2_build1.app

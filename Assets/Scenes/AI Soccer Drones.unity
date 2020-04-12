@@ -1229,12 +1229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 10
+    vectorObservationSize: 12
     numStackedVectorObservations: 1
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 66653e370d018471b8817e4b52d3071b, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: DroneSoccerBrain
@@ -1345,7 +1345,7 @@ PrefabInstance:
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: maxStep
-      value: 2000
+      value: 2500
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1, type: 3}
