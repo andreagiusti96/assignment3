@@ -23,12 +23,14 @@ public class goalieAI : MonoBehaviour
     public GameObject ball;
 
     public int DroneID;
-    float Kv = 10f;
-    float Kvd = 5f;
-    float Ka = 10f;
+    float Kv = 15f;
+    float Kvd = 15f;
+    float Ka = 15f;
     Vector3 BallVelocity;
     Vector3 OldBallPos = Vector3.zero;
     Vector3 OldErr = Vector3.zero;
+    Vector3 OldErrVel = Vector3.zero;
+    bool uscita = false;
 
     private void Start()
     {
@@ -57,24 +59,30 @@ public class goalieAI : MonoBehaviour
         float Umax = m_Drone.max_acceleration;
         float Vmax = m_Drone.max_speed;
         Vector3 acc;
-        
-        Vector3 DesiredSpeed = Kv * (GetGoalieSet() - m_Drone.transform.position) + Kvd *((GetGoalieSet() - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
+        Vector3 target = GetGoalieSet();
+        Vector3 DesiredSpeed = Kv * (target - m_Drone.transform.position) + Kvd * ((target - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
+        if (Vector3.Distance(ball.transform.position, target) < 10f)
+        {
+            DesiredSpeed = ball.GetComponent<Rigidbody>().velocity + 2 * (ball.transform.position - m_Drone.transform.position); //velocity to have collision with ball
+            Debug.DrawLine(m_Drone.transform.position, m_Drone.transform.position + m_Drone.velocity);
+        }
         acc = Ka * (DesiredSpeed - m_Drone.velocity);
-        m_Drone.Move_vect(acc / Umax);
-        OldErr = (GetGoalieSet() - m_Drone.transform.position);
-            
-        
-        Debug.DrawLine(ball.transform.position, ball.transform.position + GetBallSpeed(OldBallPos));
+        m_Drone.Move_vect(acc);
+        OldErr = (target - m_Drone.transform.position);
+        OldErrVel = DesiredSpeed - m_Drone.velocity;
+
+
+        Debug.DrawLine(ball.transform.position, ball.transform.position + ball.GetComponent<Rigidbody>().velocity);
         OldBallPos = ball.transform.position;
     }
 
     public Vector3 GetGoalieSet()
     {
         //Incentro del triangolo tra pali e palla se la palla è lontana
-        
+
         float a, b, c;
-        Vector3 palo1 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z - 15f);
-        Vector3 palo2 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z + 15f);
+        Vector3 palo1 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z - 17f);
+        Vector3 palo2 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z + 17f);
         a = Vector3.Distance(ball.transform.position, palo1);
         b = Vector3.Distance(ball.transform.position, palo2);
         c = Vector3.Distance(palo1, palo2);
@@ -83,8 +91,8 @@ public class goalieAI : MonoBehaviour
         Debug.DrawLine(ball.transform.position, palo1, Color.magenta);
         Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
 
-        if (Vector3.Distance(ball.transform.position, GoalieSet) < 40f) GoalieSet = ((ball.transform.position + GetBallSpeed(OldBallPos)) + ball.transform.position) / 2f;
         if ((friend_tag == "red" && GoalieSet.x > own_goal.transform.position.x) || (friend_tag == "blue" && GoalieSet.x < own_goal.transform.position.x)) GoalieSet = ball.transform.position;
+
         Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
         return GoalieSet;
     }

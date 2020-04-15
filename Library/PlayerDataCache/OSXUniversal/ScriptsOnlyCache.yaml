@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - GoalCheck
     - LookAt
     - PlannerBlue
+    - StrikerAI
     - TerrainManager
     - goalieAI
     Barracuda.dll:
@@ -113,7 +114,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12804}
+      Script: {instanceID: 12526}
+    - Class: 114
+      Script: {instanceID: 12806}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
@@ -923,7 +926,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: b5ba7ab31ad8f38e544b13bd40a51fb8
+      Hash: 5e0216819b4b614254fd4aa6f96802b0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DroneAISoccer_blue
@@ -945,6 +948,12 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: e12bde044bce047e7de1aa241559b1a1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StrikerAI
   - hash:
       serializedVersion: 2
       Hash: df434544c9f7b33d1cc7e635b180d279
@@ -1056,4 +1065,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/AI Soccer Drones.unity
-  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env2_build3.app
+  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env3_build1.app

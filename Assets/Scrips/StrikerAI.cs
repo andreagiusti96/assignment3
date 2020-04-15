@@ -101,8 +101,8 @@ public class StrikerAI : MonoBehaviour
         //Incentro del triangolo tra pali e palla se la palla è lontana
 
         float a, b, c;
-        Vector3 palo1 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z - 15f);
-        Vector3 palo2 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z + 15f);
+        Vector3 palo1 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z - 17f);
+        Vector3 palo2 = new Vector3(own_goal.transform.position.x, 0f, own_goal.transform.position.z + 17f);
         a = Vector3.Distance(ball.transform.position, palo1);
         b = Vector3.Distance(ball.transform.position, palo2);
         c = Vector3.Distance(palo1, palo2);
