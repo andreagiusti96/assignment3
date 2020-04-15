@@ -33,7 +33,7 @@ public class PlannerBlue : MonoBehaviour
         int k = 0;
         foreach (GameObject friend in friends)
         {
-            friend.GetComponent<DroneAISoccer_blue>().DroneID = k++;
+         //   friend.GetComponent<DroneAISoccer_blue>().DroneID = k++;
         }
     }
 }

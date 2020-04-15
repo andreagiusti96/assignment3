@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964124, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93073714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a46557ed7ccbc49a3a5dc30c0fbe10dc, type: 3}
   m_Name: 
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 12
+    vectorObservationSize: 19
     numStackedVectorObservations: 1
     vectorActionSize: 02000000
     vectorActionDescriptions: []
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187341446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffa55381df164476da483cf5aeeef4f8, type: 3}
   m_Name: 
@@ -565,7 +565,12 @@ PrefabInstance:
     - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -885,7 +890,12 @@ PrefabInstance:
     - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1001,7 +1011,12 @@ PrefabInstance:
     - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1036,7 +1051,7 @@ PrefabInstance:
     - target: {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1231,7 +1246,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147
+      value: 199.1
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1241,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100.8
+      value: 103.1
       objectReference: {fileID: 0}
     - target: {fileID: 1478294031488993883, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1291,7 +1306,12 @@ PrefabInstance:
     - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1443,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 12
+    vectorObservationSize: 19
     numStackedVectorObservations: 1
     vectorActionSize: 02000000
     vectorActionDescriptions: []
@@ -1525,6 +1545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DroneSoccerCapsule (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1827,7 +1852,12 @@ PrefabInstance:
     - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478294031488993887, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 8014876455529319980, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
@@ -1862,7 +1892,7 @@ PrefabInstance:
     - target: {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045083799023390431, guid: daca3a4f5a4e04af4be6c10f4b4f78f1,
         type: 3}

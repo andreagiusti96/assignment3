@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{A9EB10B8-9A22-EE7A-A806-FE7B4F2418B8}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/StrikerAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scrips/DroneAISoccer_blue.cs">
     <Files>
-      <File FileName="Assets/Scrips/GameManagerSoccer.cs" Line="180" Column="1" />
-      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="63" Column="33" />
+      <File FileName="Assets/Scrips/GameManagerSoccer.cs" Line="188" Column="1" />
+      <File FileName="Assets/Scrips/DroneAISoccer_blue.cs" Line="59" Column="1" />
       <File FileName="Assets/Scrips/goalieAI.cs" Line="57" Column="9" />
       <File FileName="Assets/Scrips/StrikerAI.cs" Line="76" Column="40" />
+      <File FileName="Assets/Scrips/DroneAISoccer_red.cs" Line="43" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,7 @@
           <Node name="assignment3" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scrips" expanded="True">
-                <Node name="StrikerAI.cs" selected="True" />
+                <Node name="DroneAISoccer_blue.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -25,7 +26,7 @@
     <String>Assembly-CSharp-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b90d7b0c-4706-4ff6-ad0d-7db7ce136302" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="72c8aaa5-899d-47ac-869e-3b35f0065aad" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

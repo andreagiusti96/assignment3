@@ -178,11 +178,11 @@ public class GameManagerSoccer : MonoBehaviour
             //Debug.Log(ball.GetComponent<GoalCheck>().blue_score);
             blue_score = ball.GetComponent<GoalCheck>().blue_score;
             red_score = ball.GetComponent<GoalCheck>().red_score;
-            if(match_time > match_length)
+            if (match_time > match_length)
             {
                 finished = true;
             }
-            
+
         }
     }
 
