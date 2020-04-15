@@ -13,6 +13,8 @@ TagManager:
   - Ball
   - Car
   - Drone
+  - blue
+  - red
   layers:
   - Default
   - TransparentFX

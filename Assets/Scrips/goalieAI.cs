@@ -84,7 +84,7 @@ public class goalieAI : MonoBehaviour
         Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
 
         if (Vector3.Distance(ball.transform.position, GoalieSet) < 40f) GoalieSet = ((ball.transform.position + GetBallSpeed(OldBallPos)) + ball.transform.position) / 2f;
-        if (GoalieSet.x < own_goal.transform.position.x) GoalieSet = ball.transform.position;
+        if ((friend_tag == "red" && GoalieSet.x > own_goal.transform.position.x) || (friend_tag == "blue" && GoalieSet.x < own_goal.transform.position.x)) GoalieSet = ball.transform.position;
         Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
         return GoalieSet;
     }

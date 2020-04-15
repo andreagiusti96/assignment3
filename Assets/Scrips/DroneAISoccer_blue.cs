@@ -42,10 +42,17 @@ public class DroneAISoccer_blue : Agent
         rigidB.velocity = Vector3.zero;
         m_Drone.velocity = Vector3.zero;
 
-        float x = UnityEngine.Random.Range(70, 230);
-        float z = UnityEngine.Random.Range(70, 130);
-        float bx = UnityEngine.Random.Range(100, 200);
-        float bz = UnityEngine.Random.Range(80, 120);
+        //float x = UnityEngine.Random.Range(70, 230);
+        //float z = UnityEngine.Random.Range(70, 130);
+        //float bx = UnityEngine.Random.Range(100, 200);
+        //float bz = UnityEngine.Random.Range(80, 120);
+        System.Random  rand = new System.Random();
+        float x = rand.Next(70, 230);
+        float z = rand.Next(70, 130);
+        float bx = rand.Next(100, 200);
+        float bz = rand.Next(80, 120);
+        //Debug.Log("drone (" + x + ", " + z + ")");
+        //Debug.Log("ball (" + bx + ", " + bz + ")");
         transform.position = new Vector3(x, 0, z);
 
         ball.transform.position = new Vector3(bx, 0, bz);
@@ -92,16 +99,16 @@ public class DroneAISoccer_blue : Agent
         force.z = vectorAction[1];
         m_Drone.Move_vect(force);
 
-        //if ( Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
+        //if (Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
         //{
         //    SetReward(1f);
         //    EndEpisode();
         //}
 
-        if (side * ball.GetComponent<Rigidbody>().velocity.x > 0)
-        {
-            SetReward(0.01f);
-        }
+        //if (side * ball.GetComponent<Rigidbody>().velocity.x > 0)
+        //{
+        //    SetReward(0.01f);
+        //}
 
         if (ball.GetComponent<GoalCheck>().blue_score > bScore)
         {
