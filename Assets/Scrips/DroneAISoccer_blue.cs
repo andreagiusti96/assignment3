@@ -20,7 +20,7 @@ public class DroneAISoccer_blue : Agent
 
     int bScore=0;
     int rScore = 0;
-    public int side = 1;
+    public int side;// = 1;
 
     public int DroneID;
 
@@ -55,7 +55,7 @@ public class DroneAISoccer_blue : Agent
         rigidB.velocity = Vector3.zero;
         m_Drone.velocity = Vector3.zero;
 
-        changeTeam();
+        //changeTeam();
 
         float bx = rand.Next(100, 200);
         float bz = rand.Next(80, 120);
@@ -117,31 +117,31 @@ public class DroneAISoccer_blue : Agent
         force.z = vectorAction[1];
         m_Drone.Move_vect(force);
 
-        if (Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
-        {
-            SetReward(1f);
-            EndEpisode();
-        }
+        //if (Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
+        //{
+        //    SetReward(1f);
+        //    EndEpisode();
+        //}
 
         //if (side * ball.GetComponent<Rigidbody>().velocity.x > 0)
         //{
         //    SetReward(0.01f);
         //}
 
-        //if (ball.GetComponent<GoalCheck>().blue_score > bScore)
-        //{
-        //    bScore = ball.GetComponent<GoalCheck>().blue_score;
-        //    SetReward(1f * side);
-        //    //Debug.Log("ricompensa=" + 1f * side);
-        //    EndEpisode();
-        //}
-        //else if (ball.GetComponent<GoalCheck>().red_score > rScore)
-        //{
-        //    rScore = ball.GetComponent<GoalCheck>().red_score;
-        //    SetReward(-1f * side);
-        //    //Debug.Log("ricompensa=" + (-1f) * side);
-        //    EndEpisode();
-        //}
+        if (ball.GetComponent<GoalCheck>().blue_score > bScore)
+        {
+            bScore = ball.GetComponent<GoalCheck>().blue_score;
+            SetReward(1f * side);
+            //Debug.Log("ricompensa=" + 1f * side);
+            EndEpisode();
+        }
+        else if (ball.GetComponent<GoalCheck>().red_score > rScore)
+        {
+            rScore = ball.GetComponent<GoalCheck>().red_score;
+            SetReward(-1f * side);
+            //Debug.Log("ricompensa=" + (-1f) * side);
+            EndEpisode();
+        }
     }
 
     public override float[] Heuristic()

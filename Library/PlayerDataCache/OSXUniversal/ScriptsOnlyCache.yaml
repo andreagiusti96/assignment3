@@ -1065,4 +1065,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/AI Soccer Drones.unity
-  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env3_build1.app
+  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env4_build1.app
