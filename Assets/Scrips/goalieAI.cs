@@ -64,7 +64,7 @@ public class goalieAI : MonoBehaviour
         if (Vector3.Distance(ball.transform.position, target) < 10f)
         {
             DesiredSpeed = ball.GetComponent<Rigidbody>().velocity + 2 * (ball.transform.position - m_Drone.transform.position); //velocity to have collision with ball
-            Debug.DrawLine(m_Drone.transform.position, m_Drone.transform.position + m_Drone.velocity);
+            //Debug.DrawLine(m_Drone.transform.position, m_Drone.transform.position + m_Drone.velocity);
         }
         acc = Ka * (DesiredSpeed - m_Drone.velocity);
         m_Drone.Move_vect(acc);
@@ -72,7 +72,7 @@ public class goalieAI : MonoBehaviour
         OldErrVel = DesiredSpeed - m_Drone.velocity;
 
 
-        Debug.DrawLine(ball.transform.position, ball.transform.position + ball.GetComponent<Rigidbody>().velocity);
+        //Debug.DrawLine(ball.transform.position, ball.transform.position + ball.GetComponent<Rigidbody>().velocity);
         OldBallPos = ball.transform.position;
     }
 
@@ -87,13 +87,13 @@ public class goalieAI : MonoBehaviour
         b = Vector3.Distance(ball.transform.position, palo2);
         c = Vector3.Distance(palo1, palo2);
         Vector3 GoalieSet = new Vector3((a * palo2.x + b * palo1.x + c * ball.transform.position.x) / (a + b + c), 0f, (a * palo2.z + b * palo1.z + c * ball.transform.position.z) / (a + b + c));
-        Debug.DrawLine(ball.transform.position, GoalieSet, Color.green);
-        Debug.DrawLine(ball.transform.position, palo1, Color.magenta);
-        Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
+        //Debug.DrawLine(ball.transform.position, GoalieSet, Color.green);
+        //Debug.DrawLine(ball.transform.position, palo1, Color.magenta);
+        //Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
 
         if ((friend_tag == "red" && GoalieSet.x > own_goal.transform.position.x) || (friend_tag == "blue" && GoalieSet.x < own_goal.transform.position.x)) GoalieSet = ball.transform.position;
 
-        Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
+        //Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
         return GoalieSet;
     }
 

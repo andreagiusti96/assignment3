@@ -74,26 +74,26 @@ public class StrikerAI : MonoBehaviour
         Vector3 acc = Vector3.zero;
         float Umax = m_Drone.max_acceleration;
         float Vmax = m_Drone.max_speed;
-        if (attack)
+        if (attack || !attack)
         {
             if ((friend_tag == "blue" && m_Drone.transform.position.x > (ball.transform.position.x )) || (friend_tag == "red" && m_Drone.transform.position.x < (ball.transform.position.x)))
             {
                 acc = own_goal.transform.position - m_Drone.transform.position;
-                Debug.DrawLine(m_Drone.transform.position, own_goal.transform.position, Color.black);
+                //Debug.DrawLine(m_Drone.transform.position, own_goal.transform.position, Color.black);
             }
             else
             {
                 acc = (ball.transform.position - m_Drone.transform.position);
-                Debug.DrawLine(m_Drone.transform.position, ball.transform.position, Color.black);
+                //Debug.DrawLine(m_Drone.transform.position, ball.transform.position, Color.black);
             }
         }
-        else
-        {
-            Vector3 DesiredSpeed = Kv * (GetGoalieSet() - m_Drone.transform.position) + Kvd * ((GetGoalieSet() - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
-            acc = Ka * (DesiredSpeed - m_Drone.velocity);
-            m_Drone.Move_vect(acc / Umax);
-            OldErr = (GetGoalieSet() - m_Drone.transform.position);
-        }
+        //else
+        //{
+        //    Vector3 DesiredSpeed = Kv * (GetGoalieSet() - m_Drone.transform.position) + Kvd * ((GetGoalieSet() - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
+        //    acc = Ka * (DesiredSpeed - m_Drone.velocity);
+        //    m_Drone.Move_vect(acc / Umax);
+        //    OldErr = (GetGoalieSet() - m_Drone.transform.position);
+        //}
         return acc;
     }
     public Vector3 GetGoalieSet()
@@ -107,10 +107,10 @@ public class StrikerAI : MonoBehaviour
         b = Vector3.Distance(ball.transform.position, palo2);
         c = Vector3.Distance(palo1, palo2);
         Vector3 GoalieSet = new Vector3((a * palo2.x + b * palo1.x + c * ball.transform.position.x) / (a + b + c), 0f, (a * palo2.z + b * palo1.z + c * ball.transform.position.z) / (a + b + c));
-        Debug.DrawLine(ball.transform.position, GoalieSet, Color.green);
-        Debug.DrawLine(ball.transform.position, palo1, Color.magenta);
-        Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
-        Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
+        //Debug.DrawLine(ball.transform.position, GoalieSet, Color.green);
+        //Debug.DrawLine(ball.transform.position, palo1, Color.magenta);
+        //Debug.DrawLine(ball.transform.position, palo2, Color.magenta);
+        //Debug.DrawLine(m_Drone.transform.position, GoalieSet, Color.black);
         return GoalieSet;
     }
     public void DecideBehaviour()
@@ -118,8 +118,8 @@ public class StrikerAI : MonoBehaviour
         bScore = ball.GetComponent<GoalCheck>().blue_score;
         rScore = ball.GetComponent<GoalCheck>().red_score;
         attack = ((friend_tag == "blue" && bScore <= rScore) || (friend_tag == "red" && rScore <= bScore));
-        if (friend_tag == "blue") Debug.Log("blue attack: " + attack);
-        else Debug.Log("red attack: " + attack);
+        //if (friend_tag == "blue") Debug.Log("blue attack: " + attack);
+        //else Debug.Log("red attack: " + attack);
 
     }
 

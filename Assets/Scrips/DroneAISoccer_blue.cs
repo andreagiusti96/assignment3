@@ -20,7 +20,7 @@ public class DroneAISoccer_blue : Agent
 
     int bScore=0;
     int rScore = 0;
-    public int side;// = 1;
+    public int side;
 
     public int DroneID;
 
@@ -114,7 +114,7 @@ public class DroneAISoccer_blue : Agent
         // Actions, size = 2
         Vector3 force = Vector3.zero;
         force.x = vectorAction[0];
-        force.z = vectorAction[1];
+        force.z =  vectorAction[1];
         m_Drone.Move_vect(force);
 
         //if (Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(ball.GetComponent<Rigidbody>().velocity.z) > 0.01)
@@ -127,6 +127,8 @@ public class DroneAISoccer_blue : Agent
         //{
         //    SetReward(0.01f);
         //}
+
+        //SetReward(-1f / 2000f);
 
         if (ball.GetComponent<GoalCheck>().blue_score > bScore)
         {
