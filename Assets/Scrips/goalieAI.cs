@@ -25,7 +25,7 @@ public class goalieAI : MonoBehaviour
     public int DroneID;
     float Kv = 15f;
     float Kvd = 15f;
-    float Ka = 15f;
+    float Ka = 150f;
     Vector3 BallVelocity;
     Vector3 OldBallPos = Vector3.zero;
     Vector3 OldErr = Vector3.zero;
@@ -61,16 +61,20 @@ public class goalieAI : MonoBehaviour
         Vector3 acc;
         Vector3 target = GetGoalieSet();
         Vector3 DesiredSpeed = Kv * (target - m_Drone.transform.position) + Kvd * ((target - m_Drone.transform.position) - OldErr) / Time.fixedDeltaTime;
-        if (Vector3.Distance(ball.transform.position, target) < 10f)
+
+        // uscita
+        if (Vector3.Distance(ball.transform.position, target) + Vector3.Dot(ball.GetComponent<Rigidbody>().velocity, (-own_goal.transform.position+ball.transform.position).normalized) < 10f
+            && Vector3.Distance(ball.transform.position, own_goal.transform.position) > Vector3.Distance(transform.position, own_goal.transform.position))
         {
-            DesiredSpeed = ball.GetComponent<Rigidbody>().velocity + 2 * (ball.transform.position - m_Drone.transform.position); //velocity to have collision with ball
+            DesiredSpeed = ball.GetComponent<Rigidbody>().velocity + 4 * (ball.transform.position - m_Drone.transform.position); //velocity to have collision with ball
             //Debug.DrawLine(m_Drone.transform.position, m_Drone.transform.position + m_Drone.velocity);
         }
+
         acc = Ka * (DesiredSpeed - m_Drone.velocity);
         m_Drone.Move_vect(acc);
+
         OldErr = (target - m_Drone.transform.position);
         OldErrVel = DesiredSpeed - m_Drone.velocity;
-
 
         //Debug.DrawLine(ball.transform.position, ball.transform.position + ball.GetComponent<Rigidbody>().velocity);
         OldBallPos = ball.transform.position;
