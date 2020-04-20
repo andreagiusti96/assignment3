@@ -70,53 +70,53 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9826}
+      Script: {instanceID: 9828}
     - Class: 114
-      Script: {instanceID: 9930}
+      Script: {instanceID: 9932}
     - Class: 114
-      Script: {instanceID: 9962}
+      Script: {instanceID: 9964}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9968}
     - Class: 114
-      Script: {instanceID: 10032}
+      Script: {instanceID: 10034}
     - Class: 114
-      Script: {instanceID: 10070}
+      Script: {instanceID: 10072}
     - Class: 114
-      Script: {instanceID: 10104}
+      Script: {instanceID: 10106}
     - Class: 114
-      Script: {instanceID: 10220}
+      Script: {instanceID: 10222}
     - Class: 114
-      Script: {instanceID: 10388}
+      Script: {instanceID: 10390}
     - Class: 114
-      Script: {instanceID: 10990}
+      Script: {instanceID: 10992}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11250}
     - Class: 114
-      Script: {instanceID: 11290}
+      Script: {instanceID: 11292}
     - Class: 114
-      Script: {instanceID: 11294}
+      Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11330}
+      Script: {instanceID: 11332}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11356}
     - Class: 114
-      Script: {instanceID: 11490}
-    - Class: 114
-      Script: {instanceID: 11950}
+      Script: {instanceID: 11492}
     - Class: 114
       Script: {instanceID: 11952}
     - Class: 114
-      Script: {instanceID: 12050}
+      Script: {instanceID: 11954}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12052}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12436}
+      Script: {instanceID: 12284}
     - Class: 114
-      Script: {instanceID: 12526}
+      Script: {instanceID: 12438}
     - Class: 114
-      Script: {instanceID: 12806}
+      Script: {instanceID: 12528}
+    - Class: 114
+      Script: {instanceID: 12808}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
@@ -1065,4 +1065,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/AI Soccer Drones.unity
-  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env7_build1.app
+  playerPath: /Users/giancarlo/Documents/assignment3/Builds/training_env8_build1.app

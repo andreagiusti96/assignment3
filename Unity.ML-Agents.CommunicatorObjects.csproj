@@ -63,35 +63,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\AssemblyInfo.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentAction.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentInfo.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentInfoActionPair.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\BrainParameters.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Command.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\CustomResetParameters.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\DemonstrationMeta.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\EngineConfiguration.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Header.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Observation.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\SpaceType.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityInput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityMessage.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityOutput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInitializationInput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInitializationOutput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlOutput.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityToExternal.cs" />
-    <Compile Include="\Users\Andrea\Documents\UnityML\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityToExternalGrpc.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\AssemblyInfo.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentAction.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentInfo.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\AgentInfoActionPair.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\BrainParameters.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Command.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\CustomResetParameters.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\DemonstrationMeta.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\EngineConfiguration.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Header.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\Observation.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\SpaceType.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityInput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityMessage.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityOutput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInitializationInput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInitializationOutput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlInput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityRlOutput.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityToExternal.cs" />
+    <Compile Include="\Users\giancarlo\Documents\ml-agents\com.unity.ml-agents\Runtime\Grpc\CommunicatorObjects\UnityToExternalGrpc.cs" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Hub/Editor/2019.2.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -283,46 +283,46 @@
       <HintPath>/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.barracuda@0.6.1-preview/Barracuda/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.barracuda@0.6.1-preview/Barracuda/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.burst@1.1.1/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.burst@1.1.1/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Abstractions">
-      <HintPath>/Users/Andrea/Documents/UnityML/ml-agents/com.unity.ml-agents/Plugins/System.IO.Abstractions.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/ml-agents/com.unity.ml-agents/Plugins/System.IO.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Abstractions.TestingHelpers">
-      <HintPath>/Users/Andrea/Documents/UnityML/ml-agents/com.unity.ml-agents/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/ml-agents/com.unity.ml-agents/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Grpc.Core">
-      <HintPath>/Users/Andrea/Documents/UnityML/ml-agents/com.unity.ml-agents/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/ml-agents/com.unity.ml-agents/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Interactive.Async">
-      <HintPath>/Users/Andrea/Documents/UnityML/ml-agents/com.unity.ml-agents/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/ml-agents/com.unity.ml-agents/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>/Users/andrea/Documents/GitHub/assignment3/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>/Users/giancarlo/Documents/assignment3/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2019.2.17f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

@@ -1,0 +1,25 @@
+{
+    "name": "root",
+    "total": 10.369343776954338,
+    "count": 1,
+    "self": 4.240409729012754,
+    "children": {
+        "run_training.setup": {
+            "total": 0.7393152529839426,
+            "count": 1,
+            "self": 0.7393152529839426
+        },
+        "TrainerController.start_learning": {
+            "total": 5.3896187949576415,
+            "count": 1,
+            "self": 1.3018387979827821,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 4.087779996974859,
+                    "count": 1,
+                    "self": 4.087779996974859
+                }
+            }
+        }
+    }
+}
