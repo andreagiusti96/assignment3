@@ -46,11 +46,11 @@ public class DroneAI : MonoBehaviour
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
-        Ds= 5 + 2f * (float)DroneID / (float)(friends.Length - 1);
-        gamma = (float)(friends.Length)*100f - (float)DroneID * 100f;
-        Vmax = 15f - 6f * (float)DroneID / (float)(friends.Length-1);
+        Ds= 5 + 1f * (float)DroneID / (float)(friends.Length - 1);
+        gamma = (float)(friends.Length) * 100f; // - (float)DroneID * 100f;
+        Vmax = 15f - 7f * (float)DroneID / (float)(friends.Length-1);
         Kv = 2f - (float)DroneID / (float)(friends.Length - 1);
-        Ka = 1f;
+        Ka = 10f;
     }
 
 
@@ -128,12 +128,17 @@ public class DroneAI : MonoBehaviour
 
             h[j] = Mathf.Sqrt(2 * Umax * (deltaP.magnitude-Ds))+ Vector2.Dot(deltaP,deltaV) / deltaP.magnitude;
 
-
             A[j] = -deltaP;
 
             b[j] = -Vector2.Dot(deltaP, deltaV) * Vector2.Dot(deltaP, three2two(m_Drone.velocity)) / Mathf.Pow(deltaP.magnitude, 2);
             b[j] += Vector2.Dot(deltaV, three2two(m_Drone.velocity));
             b[j] += 0.5 * (gamma * Mathf.Pow((float)h[j], 3) * deltaP.magnitude + Mathf.Sqrt(2 * Umax) * Vector2.Dot(deltaP, deltaV) / Mathf.Sqrt(2 * (deltaP.magnitude - Ds)));
+
+            Vector3 lateralDir = Quaternion.Euler(0, 90, 0) * m_Drone.velocity; 
+            if(Vector3.Dot((friends[j].transform.position-m_Drone.transform.position).normalized, lateralDir.normalized) > 0.3)
+            {
+                b[j] = float.PositiveInfinity;
+            }
         }
     }
 

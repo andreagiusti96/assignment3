@@ -220,7 +220,7 @@ public class PathPlanner1 : MonoBehaviour
            // outgoing.cost = Mathf.Max(outgoing.originalCost * 1.2f, outgoing.cost);
         //}
 
-        forward.cost = forward.cost * 0.7f;
+        forward.cost = forward.cost * 0.6f;
         backward.cost = backward.cost * 2f;
     }
 
