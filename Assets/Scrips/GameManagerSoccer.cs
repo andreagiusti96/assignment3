@@ -180,7 +180,7 @@ public class GameManagerSoccer : MonoBehaviour
             red_score = ball.GetComponent<GoalCheck>().red_score;
             if (match_time > match_length)
             {
-               // finished = true;
+               finished = true;
             }
 
         }

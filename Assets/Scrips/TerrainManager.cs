@@ -33,7 +33,7 @@ public class TerrainManager : MonoBehaviour {
 
         myInfo.wall_height = wall_height; // a bit ugly...
         myInfo.CreateCubes();
-
+   
 
         // this code is used to create new terrains and obstacles
         //myInfo.TerrainInfo2();
@@ -167,6 +167,8 @@ public class TerrainInfo
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     cube.transform.position = new Vector3(get_x_pos(i), 0.0f, get_z_pos(j));
                     cube.transform.localScale = new Vector3(x_step, wall_height, z_step);
+                    //to compete with group 2
+                    cube.layer = 9;
                 }
 
             }

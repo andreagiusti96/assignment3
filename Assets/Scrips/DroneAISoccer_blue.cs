@@ -51,22 +51,22 @@ public class DroneAISoccer_blue : Agent
 
     public override void OnEpisodeBegin()
     {
-        rigidB.angularVelocity = Vector3.zero;
-        rigidB.velocity = Vector3.zero;
-        m_Drone.velocity = Vector3.zero;
+        //rigidB.angularVelocity = Vector3.zero;
+        //rigidB.velocity = Vector3.zero;
+        //m_Drone.velocity = Vector3.zero;
 
-        //changeTeam();
+        ////changeTeam();
 
-        float bx = rand.Next(100, 200);
-        float bz = rand.Next(80, 120);
+        //float bx = rand.Next(100, 200);
+        //float bz = rand.Next(80, 120);
 
-        ball.transform.position = new Vector3(bx, 0, bz);
-        ball.GetComponent<Rigidbody>().velocity=Vector3.zero;
-        ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        //ball.transform.position = new Vector3(bx, 0, bz);
+        //ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
-        moveDrones(enemies);
-        moveDrones(friends);
-        //Debug.DrawLine(transform.position, other_goal.transform.position, Color.white, 10f);
+        //moveDrones(enemies);
+        //moveDrones(friends);
+        ////Debug.DrawLine(transform.position, other_goal.transform.position, Color.white, 10f);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -140,7 +140,8 @@ public class DroneAISoccer_blue : Agent
         else if (ball.GetComponent<GoalCheck>().red_score > rScore)
         {
             rScore = ball.GetComponent<GoalCheck>().red_score;
-            SetReward(-1f * side);
+            SetReward(-1f);
+            //SetReward(-1f * side);
             //Debug.Log("ricompensa=" + (-1f) * side);
             EndEpisode();
         }

@@ -29,7 +29,11 @@ public class DroneAI : MonoBehaviour
     float Vmax;
     float Kv;
     float Ka;
+    int TimeTowait;
+    int k = 0;
+    System.Random rand = new System.Random();
 
+    bool Traffic = false;
     //stuckRecovery
     bool stuck = false;
     Vector3 LastPos;
@@ -46,62 +50,73 @@ public class DroneAI : MonoBehaviour
         Vector3 start_pos = terrain_manager.myInfo.start_pos;
         Vector3 goal_pos = terrain_manager.myInfo.goal_pos;
 
-        Ds= 5 + 1f * (float)DroneID / (float)(friends.Length - 1);
+        Ds= 5 + 3f * (float)DroneID / (float)(friends.Length - 1);//5, 3
         gamma = (float)(friends.Length) * 100f; // - (float)DroneID * 100f;
-        Vmax = 15f - 7f * (float)DroneID / (float)(friends.Length-1);
+        Vmax = 15f - 0f * (float)DroneID / (float)(friends.Length-1);
         Kv = 2f - (float)DroneID / (float)(friends.Length - 1);
         Ka = 10f;
+        TimeTowait = DroneID * 65;//65;//60
     }
 
 
     private void FixedUpdate()
     {
-        Umax = m_Drone.max_acceleration;
-        Vector3 acc;
-
-        if (Vector3.Distance(LastPos, m_Drone.transform.position) < 0.01f && Vector3.Distance(my_path[my_path.Count - 1].point, m_Drone.transform.position) > 5f && recovery == 0) stuckCounter++;
-        stuck = stuckCounter > 10;
-        if (stuck)
+        k++;
+        if (k >= 0)
         {
-            Debug.Log("Drone" + DroneID + " Stucked");
-            acc = AccRecovery();
-            m_Drone.Move_vect(acc);
-            recovery++;
-            if (recovery > 50)
+            Umax = m_Drone.max_acceleration;
+            Vector3 acc;
+
+            if (Vector3.Distance(LastPos, m_Drone.transform.position) < 0.01f && Vector3.Distance(my_path[my_path.Count - 1].point, m_Drone.transform.position) > 5f && recovery == 0) stuckCounter++;
+            stuck = stuckCounter > 10;
+            if (stuck)
             {
-                stuckCounter = 0;
-                recovery = 0;
+                Debug.Log("Drone" + DroneID + " Stucked");
+                acc = AccRecovery();
+                m_Drone.Move_vect(acc);
+                recovery++;
+                if (recovery > 50)
+                {
+                    stuckCounter = 0;
+                    recovery = 0;
+                }
             }
+            else
+            {
+
+                ComputeConstraints();
+                float treshold = 7;
+
+                Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
+                if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
+
+                acc = Ka * (DesiredSpeed - m_Drone.velocity);
+                if (acc.magnitude > Umax)
+                {
+                    acc = acc.normalized * Umax;
+                }
+
+
+                acc = two2three(RandSearc(three2two(acc)));
+
+                m_Drone.Move_vect(acc / Umax);
+                if (waypoint < (my_path.Count - 1) && Vector3.Distance(my_path[waypoint].point, m_Drone.transform.position) < treshold && k > TimeTowait)
+                {
+                    waypoint++;
+                }
+            }
+            LastPos = m_Drone.transform.position;
         }
-        else
-        {
-
-            ComputeConstraints();
-            float treshold = 7;
-
-            Vector3 DesiredSpeed = Kv * (my_path[waypoint].point - m_Drone.transform.position);
-            if (DesiredSpeed.magnitude > Vmax) DesiredSpeed = DesiredSpeed.normalized * Vmax;
-
-            acc = Ka * (DesiredSpeed - m_Drone.velocity);
-            if (acc.magnitude > Umax)
-            {
-                acc = acc.normalized * Umax;
-            }
-
-
-            acc = two2three(RandSearc(three2two(acc)));
-
-            m_Drone.Move_vect(acc / Umax);
-
-            if (waypoint < (my_path.Count - 1) && Vector3.Distance(my_path[waypoint].point, m_Drone.transform.position) < treshold)
-            {
-                waypoint++;
-            }
-        }
-        LastPos = m_Drone.transform.position;
 
     }
-
+    //public bool CheckForTraffic()
+    //{
+    //    //true se c'è collisione
+    //    bool traffic = false;
+    //    RaycastHit[] hitInfo = Physics.SphereCastAll(m_Drone.transform.position, 20f, my_path[waypoint + 1].point - my_path[waypoint].point, out hitInfo, 40f);
+    //    Debug.Log("hitInfo" + hitInfo);
+    //    return traffic;
+    //}
     public Vector3 two2three(Vector2 vec)
     {
         Vector3 vecNew = new Vector3(vec.x, 0, vec.y);
@@ -229,7 +244,7 @@ public class DroneAI : MonoBehaviour
             Debug.Log("uscito con step="+step);
         }
 
-        return uRand;//4*uRand;
+        return 2*uRand;//uRand;
     }
 
     public Vector3 closestFriend()
@@ -258,7 +273,7 @@ public class DroneAI : MonoBehaviour
 
     public Vector3 StuckRecovery(Vector3 Pos)
     {
-        Vector3 acc = -0.5f * (Pos - m_Drone.transform.position);
+        Vector3 acc = -2f * (Pos - m_Drone.transform.position);//0.5
         acc = Quaternion.EulerAngles(0, 3.14f / 9.0f, 0) * acc;
         return acc;
     }
